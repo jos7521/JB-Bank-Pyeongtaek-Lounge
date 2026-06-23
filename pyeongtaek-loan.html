@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JB Bank Pyeongtaek Lounge — Foreign Worker Loan</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f7f6f2;--card:#fff;--border:#e4e2d8;
+  --text:#1a1a18;--text2:#6b6a64;--text3:#a09e96;
+  --blue:#0052cc;--blue-dark:#003087;
+  --green:#1b5e20;--green-bg:#e8f5e9;
+  --radius:16px;--radius-sm:10px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;display:flex;justify-content:center;}
+.app{width:100%;max-width:480px;background:var(--card);min-height:100vh;display:flex;flex-direction:column;}
+
+.hero{background:linear-gradient(155deg,#1a3a5c 0%,#c8a84b 55%,#e8c96a 100%);padding:2.5rem 1.5rem 3rem;color:#fff;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.06);}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.hero-brand{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:.4rem;position:relative;}
+.hero-brand span{color:#f5e198;}
+.hero h1{font-size:24px;font-weight:700;line-height:1.3;margin-bottom:.75rem;position:relative;}
+.hero h1 span{color:#f5e198;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:1.5rem;position:relative;}
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;}
+.hc{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:14px 12px;}
+.hc.hi{background:rgba(255,255,255,0.22);border-color:rgba(255,255,255,0.35);}
+.hc-num{font-size:22px;font-weight:700;color:#fff;line-height:1;}
+.hc-num span{font-size:13px;font-weight:400;color:rgba(255,255,255,0.7);}
+.hc-label{font-size:11px;color:rgba(255,255,255,0.65);margin-top:4px;}
+
+#landing{padding:0;}
+.sec-title{font-size:12px;font-weight:600;color:var(--text2);padding:1.25rem 1.5rem .6rem;letter-spacing:.04em;text-transform:uppercase;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 1rem 1rem;}
+.cbtn{padding:11px 10px;border-radius:var(--radius-sm);background:var(--card);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:8px;text-align:left;transition:all .15s;}
+.cbtn:hover{border-color:#c8a84b;background:#fffbf0;}
+.cbtn .cf{font-size:20px;flex-shrink:0;}
+.cbtn .cn{font-size:13px;font-weight:600;color:var(--text);}
+.cbtn .cs{font-size:10px;color:var(--text2);margin-top:1px;}
+.cbtn.full{grid-column:span 2;}
+.note{margin:0 1rem 1.5rem;background:var(--bg);border-radius:var(--radius-sm);padding:10px 14px;font-size:11px;color:var(--text3);line-height:1.5;}
+
+#chatbox{display:none;flex-direction:column;flex:1;}
+.pbar{height:3px;background:var(--border);}
+.pfill{height:100%;background:linear-gradient(90deg,#1a3a5c,#c8a84b);transition:width .4s ease;}
+.cheader{display:flex;align-items:center;gap:10px;padding:.875rem 1rem;border-bottom:1px solid var(--border);background:var(--card);}
+.bkbtn{background:none;border:none;cursor:pointer;color:var(--text2);font-size:22px;line-height:1;padding:2px 4px;}
+.cavt{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1a3a5c,#c8a84b);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.cname{font-size:14px;font-weight:600;color:var(--text);}
+.cname-sub{font-size:10px;color:var(--text3);margin-top:1px;}
+.cflag{margin-left:auto;font-size:20px;}
+.msgs{flex:1;padding:1rem;display:flex;flex-direction:column;gap:12px;overflow-y:auto;min-height:280px;}
+.mrow{display:flex;align-items:flex-end;gap:8px;}
+.mrow.u{justify-content:flex-end;}
+.bav{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1a3a5c,#c8a84b);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-bottom:2px;}
+.bub{max-width:82%;padding:11px 14px;font-size:14px;line-height:1.6;white-space:pre-wrap;}
+.bub.bot{background:var(--bg);border:1px solid var(--border);border-radius:4px 16px 16px 16px;color:var(--text);}
+.bub.u{background:linear-gradient(135deg,#1a3a5c,#c8a84b);color:#fff;border-radius:16px 16px 4px 16px;}
+.charea{padding:0 1rem .5rem;display:flex;flex-direction:column;gap:8px;}
+.chbtn{width:100%;padding:13px 16px;border-radius:var(--radius-sm);background:var(--card);border:1.5px solid var(--border);cursor:pointer;text-align:left;font-size:14px;color:var(--text);display:flex;align-items:center;gap:10px;transition:all .15s;font-weight:500;}
+.chbtn:hover{border-color:#c8a84b;background:#fffbf0;color:#8a6f1e;}
+.chbtn .ci{font-size:18px;flex-shrink:0;}
+.chbtn .csub{font-size:11px;color:var(--text2);display:block;margin-top:2px;font-weight:400;}
+
+.phone-area{padding:1rem;}
+.phone-label{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.phone-sub{font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.6;}
+.phone-row{display:flex;gap:8px;}
+.phone-row input{flex:1;padding:13px 14px;font-size:16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--card);color:var(--text);outline:none;}
+.phone-row input:focus{border-color:#c8a84b;}
+.phone-row input::placeholder{color:var(--text3);}
+.phone-btn{padding:13px 20px;background:linear-gradient(135deg,#1a3a5c,#c8a84b);color:#fff;border:none;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;font-weight:600;white-space:nowrap;}
+.phone-skip{display:block;text-align:center;font-size:12px;color:var(--text3);margin-top:12px;cursor:pointer;text-decoration:underline;}
+.phone-privacy{font-size:11px;color:var(--text3);margin-top:10px;line-height:1.5;padding:8px 10px;background:var(--bg);border-radius:8px;}
+
+#cta-area{padding:0 1rem 1.5rem;display:none;}
+.ctabox{border-radius:var(--radius);padding:1.5rem;background:var(--green-bg);border:1.5px solid #a5d6a7;}
+.ctah{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.ctah-icon{font-size:28px;}
+.ctah-text{font-size:16px;font-weight:700;color:var(--green);}
+.ctad{font-size:13px;line-height:1.7;color:#2e7d32;margin-bottom:16px;}
+.conf-badge{background:#fff;border:1px solid #a5d6a7;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;color:#1b5e20;margin-bottom:14px;display:flex;align-items:center;gap:8px;font-weight:600;}
+.summary-box{background:#fff;border:1px solid #a5d6a7;border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:14px;}
+.summary-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#2e7d32;}
+.summary-row span:first-child{color:var(--text2);}
+.btn-apply{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a3a5c,#2a5a8c);color:#fff;text-decoration:none;padding:14px;border-radius:var(--radius-sm);font-size:15px;font-weight:700;margin-bottom:10px;transition:opacity .15s;}
+.btn-apply:hover{opacity:.9;}
+.btn-msg{display:flex;align-items:center;justify-content:center;gap:8px;background:#1877F2;color:#fff;text-decoration:none;padding:13px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;transition:opacity .15s;}
+.btn-msg:hover{opacity:.9;}
+
+@media(max-width:480px){
+  body{padding:0;}
+  .app{border-radius:0;}
+  .hero{padding:2rem 1.25rem 2.5rem;}
+  .hero h1{font-size:20px;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div id="landing">
+  <div class="hero">
+    <div class="hero-brand">JB Bank &middot; <span>Pyeongtaek Lounge</span></div>
+    <h1>Working in Korea?<br>Borrow up to<br><span>&#8361;50,000,000</span></h1>
+    <p class="hero-sub">&#127968; JB Bank Pyeongtaek Lounge<br>Fast loan check for foreign workers &mdash; 1 minute.</p>
+    <div class="hero-cards">
+      <div class="hc hi"><div class="hc-num">&#8361;50M</div><div class="hc-label">Max loan amount</div></div>
+      <div class="hc"><div class="hc-num">12.12<span>%~</span></div><div class="hc-label">Starting rate</div></div>
+      <div class="hc"><div class="hc-num">57<span> mo</span></div><div class="hc-label">Up to 57 months</div></div>
+      <div class="hc"><div class="hc-num">1<span> mo</span></div><div class="hc-label">Min. employment</div></div>
+    </div>
+  </div>
+
+  <p class="sec-title">Select your nationality</p>
+  <div class="grid">
+    <button class="cbtn" onclick="startChat('ph')"><span class="cf">&#127477;&#127469;</span><span><div class="cn">Filipino</div><div class="cs">Philippines</div></span></button>
+    <button class="cbtn" onclick="startChat('ne')"><span class="cf">&#127475;&#127477;</span><span><div class="cn">&#2344;&#2375;&#2346;&#2366;&#2354;&#2368;</div><div class="cs">Nepali</div></span></button>
+    <button class="cbtn" onclick="startChat('si')"><span class="cf">&#127473;&#127472;</span><span><div class="cn">&#3523;&#3538;&#3458;&#3524;&#3517;</div><div class="cs">Sinhala</div></span></button>
+    <button class="cbtn" onclick="startChat('id')"><span class="cf">&#127470;&#127465;</span><span><div class="cn">Indonesia</div><div class="cs">Indonesian</div></span></button>
+    <button class="cbtn" onclick="startChat('my')"><span class="cf">&#127474;&#127474;</span><span><div class="cn">Myanmar</div><div class="cs">Burmese</div></span></button>
+    <button class="cbtn" onclick="startChat('kh')"><span class="cf">&#127472;&#127469;</span><span><div class="cn">&#6039;&#6098;&#6040;&#6082;&#6042;</div><div class="cs">Khmer</div></span></button>
+    <button class="cbtn" onclick="startChat('bd')"><span class="cf">&#127463;&#127465;</span><span><div class="cn">&#2476;&#2494;&#2434;&#2482;&#2494;</div><div class="cs">Bengali</div></span></button>
+    <button class="cbtn" onclick="startChat('uz')"><span class="cf">&#127482;&#127487;</span><span><div class="cn">O'zbek</div><div class="cs">Uzbek</div></span></button>
+    <button class="cbtn" onclick="startChat('kg')"><span class="cf">&#127472;&#127468;</span><span><div class="cn">&#1050;&#1099;&#1088;&#1075;&#1099;&#1079;</div><div class="cs">Kyrgyz</div></span></button>
+    <button class="cbtn" onclick="startChat('zh')"><span class="cf">&#127464;&#127475;</span><span><div class="cn">&#20013;&#25991;</div><div class="cs">Chinese &middot; F visa</div></span></button>
+    <button class="cbtn" onclick="startChat('vi')"><span class="cf">&#127483;&#127475;</span><span><div class="cn">Ti&#7871;ng Vi&#7879;t</div><div class="cs">Vietnamese</div></span></button>
+    <button class="cbtn" onclick="startChat('th')"><span class="cf">&#127481;&#127469;</span><span><div class="cn">&#3616;&#3634;&#3625;&#3634;&#3652;&#3607;&#3618;</div><div class="cs">Thai</div></span></button>
+    <button class="cbtn" onclick="startChat('mn')"><span class="cf">&#127474;&#127475;</span><span><div class="cn">&#1052;&#1086;&#1085;&#1075;&#1086;&#1083;</div><div class="cs">Mongolian</div></span></button>
+    <button class="cbtn full" onclick="startChat('en')"><span class="cf">&#127760;</span><span><div class="cn">English</div><div class="cs">Other nationalities</div></span></button>
+  </div>
+  <div class="note">JB Bank Bravo Korea (2026.04.17). Final approval subject to bank review. Vietnam / Thailand / Mongolia: max 10,000,000 KRW.</div>
+</div>
+
+<div id="chatbox">
+  <div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+  <div class="cheader">
+    <button class="bkbtn" onclick="resetApp()">&#8592;</button>
+    <div class="cavt">&#127968;</div>
+    <div>
+      <div class="cname" id="cname">Pyeongtaek Lounge</div>
+      <div class="cname-sub">JB Bank Pyeongtaek Lounge</div>
+    </div>
+    <span class="cflag" id="cflag"></span>
+  </div>
+  <div class="msgs" id="msgs"></div>
+  <div class="charea" id="charea"></div>
+  <div id="phone-area" style="display:none;" class="phone-area"></div>
+  <div id="cta-area"></div>
+</div>
+
+</div>
+<script>
+var APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL';
+var APPLY_URL = 'https://m.jbbank.co.kr/P_M_BDT189321_01.act?seq=202606120300280&dvcd=13&skp=N&slf=01&dvcd2=03&dvcd1=0000';
+var FB_URL = 'https://www.facebook.com/messages/t/61586980617011';
+
+var LANG = {
+  ph: {
+    name: 'Pyeongtaek Lounge', nat: 'Philippines',
+    visa_q: "What's your visa type in Korea?",
+    months_q: "How long have you been working in Korea?",
+    salary_q: "What's your annual salary?",
+    months: ['< 1 buwan','1-3 buwan','3-12 buwan','1-3 taon','3+ taon'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: 'Almost done! &#128222;',
+    phone_sub: 'Leave your number and our loan officer at JB Bank Pyeongtaek Lounge will call you within 24 hours!',
+    phone_placeholder: '+63 or 010-XXXX-XXXX',
+    phone_btn: 'Submit',
+    phone_skip: 'Skip for now',
+    phone_privacy: 'By clicking Submit, you agree to the use of your information, which will be used only for loan consultation purposes.',
+    result_head: 'We received your inquiry! &#127881;',
+    result_desc: 'Salamat! Our loan officer at JB Bank Pyeongtaek Lounge will contact you within 24 hours.\n\nYou can also apply directly on the JB Bank official page below.',
+    conf_label: '&#128222; We\'ll call you at:',
+    apply_btn: 'Apply Now &#8212; JB Bank Official',
+    msg_btn: 'Chat with a loan officer on Messenger'
+  },
+  ne: {
+    name: 'Pyeongtaek Lounge', nat: 'Nepal',
+    visa_q: '&#2340;&#2346;&#2366;&#2311;&#2306;&#2325;&#2379; &#2349;&#2367;&#2360;&#2366; &#2346;&#2381;&#2352;&#2325;&#2366;&#2352;?',
+    months_q: '&#2325;&#2340;&#2367; &#2350;&#2361;&#2367;&#2344;&#2366; &#2325;&#2366;&#2350; &#2327;&#2352;&#2381;&#2344;&#2369;&#2349;&#2351;&#2379;?',
+    salary_q: '&#2357;&#2366;&#2352;&#2381;&#2359;&#2367;&#2325; &#2310;&#2351;?',
+    months: ['< 1 mahina','1-3 mahina','3-12 mahina','1-3 barsa','3+ barsa'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: '&#2347;&#2379;&#2344; &#2344;&#2350;&#2381;&#2348;&#2352; &#128222;',
+    phone_sub: '&#2361;&#2366;&#2350;&#2381;&#2352;&#2379; &#2323;&#2339; &#2309;&#2343;&#2367;&#2325;&#2366;&#2352;&#2368;&#2354;&#2375; 24 &#2328;&#2339;&#2381;&#2335;&#2366;&#2349;&#2367;&#2340;&#2352; &#2360;&#2350;&#2381;&#2346;&#2352;&#2381;&#2325; &#2327;&#2352;&#2381;&#2344;&#2375;&#2331;&#2344;!',
+    phone_placeholder: '010-XXXX-XXXX',
+    phone_btn: '&#2346;&#2336;&#2366;&#2313;&#2344;&#2369;&#2361;&#2379;&#2360;&#2381;',
+    phone_skip: '&#2309;&#2361;&#2367;&#2354;&#2375; &#2331;&#2379;&#2337;&#2381;&#2344;&#2369;&#2361;&#2379;&#2360;&#2381;',
+    phone_privacy: '&#2360;&#2381;&#2357;&#2368;&#2325;&#2366;&#2352; &#2327;&#2352;&#2375;&#2352; &#2340;&#2346;&#2366;&#2311;&#2306;&#2325;&#2379; &#2332;&#2366;&#2344;&#2325;&#2366;&#2352;&#2368; &#2344;&#2367;&#2332;&#2368; &#2313;&#2339; &#2346;&#2352;&#2366;&#2350;&#2352;&#2381;&#2358;&#2325;&#2379; &#2354;&#2366;&#2327;&#2367; &#2350;&#2366;&#2340;&#2381;&#2352; &#2346;&#2381;&#2352;&#2351;&#2379;&#2327; &#2327;&#2352;&#2367;&#2344;&#2375;&#2331;.',
+    result_head: '&#2360;&#2350;&#2381;&#2346;&#2352;&#2381;&#2325; &#2346;&#2381;&#2352;&#2366;&#2346;&#2381;&#2340; &#2349;&#2351;&#2379;! &#127881;',
+    result_desc: '&#2343;&#2344;&#2381;&#2351;&#2357;&#2366;&#2342;! 24 &#2328;&#2339;&#2381;&#2335;&#2366;&#2349;&#2367;&#2340;&#2352; &#2360;&#2350;&#2381;&#2346;&#2352;&#2381;&#2325; &#2327;&#2352;&#2381;&#2344;&#2375;&#2331;&#2344;.',
+    conf_label: '&#128222; &#2325;&#2354; &#2327;&#2352;&#2381;&#2344;&#2375;&#2331;&#2380;&#2306;:',
+    apply_btn: '&#2309;&#2361;&#2367;&#2354;&#2375; &#2310;&#2357;&#2375;&#2342;&#2344; &#2327;&#2352;&#2381;&#2344;&#2369;&#2361;&#2379;&#2360;&#2381;',
+    msg_btn: 'Messenger ma samparka'
+  },
+  si: {
+    name: 'Pyeongtaek Lounge', nat: 'Sri Lanka',
+    visa_q: 'Your visa type?', months_q: 'How long have you worked?', salary_q: 'Annual income?',
+    months: ['< masa 1','masa 1-3','masa 3-12','awuru 1-3','awuru 3+'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: 'Phone Number &#128222;',
+    phone_sub: 'Our officer will call you within 24 hours!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: 'Submit', phone_skip: 'Skip',
+    phone_privacy: 'By clicking Submit, you agree to use of your info for loan consultation only.',
+    result_head: 'Received! &#127881;',
+    result_desc: 'Thank you! Our loan officer will contact you within 24 hours.',
+    conf_label: '&#128222; We\'ll call:', apply_btn: 'Apply Now &#8212; JB Bank', msg_btn: 'Chat on Messenger'
+  },
+  id: {
+    name: 'Pyeongtaek Lounge', nat: 'Indonesia',
+    visa_q: 'Apa jenis visa Anda?', months_q: 'Berapa lama bekerja di Korea?', salary_q: 'Berapa gaji tahunan Anda?',
+    months: ['< 1 bulan','1-3 bulan','3-12 bulan','1-3 tahun','3+ tahun'],
+    salary: ['< W15.000.000','W15M - W25M','W25M - W40M','> W40.000.000'],
+    phone_title: 'Nomor Telepon &#128222;',
+    phone_sub: 'Petugas kami akan menghubungi Anda dalam 24 jam!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: 'Kirim', phone_skip: 'Lewati',
+    phone_privacy: 'Dengan mengklik Kirim, Anda menyetujui penggunaan informasi Anda yang hanya akan digunakan untuk konsultasi pinjaman.',
+    result_head: 'Terima kasih! &#127881;',
+    result_desc: 'Petugas pinjaman kami akan menghubungi Anda dalam 24 jam.',
+    conf_label: '&#128222; Kami akan menghubungi:', apply_btn: 'Daftar Sekarang &#8212; JB Bank', msg_btn: 'Chat di Messenger'
+  },
+  my: {
+    name: 'Pyeongtaek Lounge', nat: 'Myanmar',
+    visa_q: 'Visa type?', months_q: 'How long have you worked in Korea?', salary_q: 'Annual salary?',
+    months: ['< 1 la','1-3 la','3-12 la','1-3 hnit','3+ hnit'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: 'Phone Number &#128222;',
+    phone_sub: 'Our officer will call you within 24 hours!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: 'Submit', phone_skip: 'Skip',
+    phone_privacy: 'By clicking Submit, you agree to use of your info for loan consultation only.',
+    result_head: 'Received! &#127881;',
+    result_desc: 'Our loan officer will contact you within 24 hours.',
+    conf_label: '&#128222; We\'ll call:', apply_btn: 'Apply Now &#8212; JB Bank', msg_btn: 'Chat on Messenger'
+  },
+  kh: {
+    name: 'Pyeongtaek Lounge', nat: 'Cambodia',
+    visa_q: 'Visa type?', months_q: 'How long worked in Korea?', salary_q: 'Annual income?',
+    months: ['< 1 khe','1-3 khe','3-12 khe','1-3 chnam','3+ chnam'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: 'Phone &#128222;',
+    phone_sub: 'Our officer will call within 24 hours!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: 'Submit', phone_skip: 'Skip',
+    phone_privacy: 'By clicking Submit, you agree to use of your info for loan consultation only.',
+    result_head: 'Received! &#127881;',
+    result_desc: 'Our loan officer will contact you within 24 hours.',
+    conf_label: '&#128222; We\'ll call:', apply_btn: 'Apply Now &#8212; JB Bank', msg_btn: 'Chat on Messenger'
+  },
+  bd: {
+    name: 'Pyeongtaek Lounge', nat: 'Bangladesh',
+    visa_q: '&#2438;&#2474;&#2472;&#2494;&#2480; &#2477;&#2495;&#2488;&#2494;&#2480; &#2471;&#2480;&#2472;?',
+    months_q: '&#2453;&#2468;&#2470;&#2495;&#2472; &#2453;&#2494;&#2460; &#2453;&#2480;&#2459;&#2503;&#2472;?',
+    salary_q: '&#2476;&#2494;&#2480;&#2509;&#2487;&#2495;&#2453; &#2438;&#2527;?',
+    months: ['< 1 mas','1-3 mas','3-12 mas','1-3 bochor','3+ bochor'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: '&#2475;&#2507;&#2472; &#2472;&#2478;&#2509;&#2476;&#2480; &#128222;',
+    phone_sub: '&#2438;&#2478;&#2494;&#2470;&#2503;&#2480; &#2453;&#2480;&#2509;&#2478;&#2453;&#2480;&#2509;&#2468;&#2494; 24 &#2498;&#2467;&#2472;&#2509;&#2463;&#2494;&#2480; &#2478;&#2471;&#2509;&#2479;&#2503; &#2479;&#2507;&#2455;&#2494;&#2479;&#2507;&#2455; &#2453;&#2480;&#2476;&#2503;&#2472;!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: '&#2460;&#2478;&#2494; &#2470;&#2495;&#2472;', phone_skip: '&#2447;&#2390;&#2496;&#2479;&#2492;&#2503; &#2479;&#2494;&#2472;',
+    phone_privacy: 'Submit &#2453;&#2509;&#2482;&#2495;&#2453; &#2453;&#2480;&#2503; &#2438;&#2474;&#2472;&#2495; &#2468;&#2469;&#2509;&#2479; &#2476;&#2509;&#2479;&#2476;&#2489;&#2494;&#2480;&#2503; &#2488;&#2478;&#2509;&#2478;&#2468; &#2489;&#2458;&#2509;&#2459;&#2503;&#2472;.',
+    result_head: '&#2474;&#2503;&#2527;&#2503;&#2459;&#2495;! &#127881;',
+    result_desc: '&#2471;&#2472;&#2509;&#2479;&#2476;&#2494;&#2470;! 24 &#2498;&#2467;&#2472;&#2509;&#2463;&#2494;&#2480; &#2478;&#2471;&#2509;&#2479;&#2503; &#2479;&#2507;&#2455;&#2494;&#2479;&#2507;&#2455; &#2453;&#2480;&#2476;&#2503;&#2472;.',
+    conf_label: '&#128222; &#2453;&#2482; &#2453;&#2480;&#2476;:', apply_btn: '&#2447;&#2454;&#2472;&#2439;&#2439; &#2438;&#2476;&#2503;&#2470;&#2472; &#2453;&#2480;&#2497;&#2472;', msg_btn: 'Messenger e jogajog korun'
+  },
+  uz: {
+    name: 'Pyeongtaek Lounge', nat: 'Uzbekistan',
+    visa_q: 'Viza turingiz?', months_q: 'Qancha vaqt ishladingiz?', salary_q: 'Yillik daromad?',
+    months: ['< 1 oy','1-3 oy','3-12 oy','1-3 yil','3+ yil'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: 'Telefon raqam &#128222;',
+    phone_sub: 'Mutaxassisimiz 24 soat ichida siz bilan boglanadi!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: 'Yuborish', phone_skip: 'Otkazib yuborish',
+    phone_privacy: 'Yuborish tugmasini bosib, ma\'lumotlaringizdan faqat kredit maslahati uchun foydalanishga rozilik bildirasiz.',
+    result_head: 'Qabul qilindi! &#127881;',
+    result_desc: 'Rahmat! Mutaxassisimiz 24 soat ichida siz bilan boglanadi.',
+    conf_label: '&#128222; Boglanamiz:', apply_btn: 'Hozir murojaat qiling &#8212; JB Bank', msg_btn: 'Messenger orqali boglanish'
+  },
+  kg: {
+    name: 'Pyeongtaek Lounge', nat: 'Kyrgyzstan',
+    visa_q: 'Vizanyn tury?', months_q: 'Kancha ay ishtedingiz?', salary_q: 'Jyldyk kireshe?',
+    months: ['< 1 ay','1-3 ay','3-12 ay','1-3 jyl','3+ jyl'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: 'Telefon &#128222;',
+    phone_sub: 'Adisibiz 24 saat ichinde sizge chalat!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: 'Jonotuу', phone_skip: 'Otkorup jibering',
+    phone_privacy: 'Jonotuу basuu menen maалыматыnyzdyn kredit keneshin uchun gana koldonulushuna makul bolосуз.',
+    result_head: 'Kabyl alyndy! &#127881;',
+    result_desc: 'Rahmat! Adisibiz 24 saat ichinde sizge chalat.',
+    conf_label: '&#128222; Chalabyз:', apply_btn: 'Azyr murojaat &#8212; JB Bank', msg_btn: 'Messenger arkyluu chat'
+  },
+  zh: {
+    name: 'Pyeongtaek Lounge', nat: 'China',
+    visa_q: '&#24744;&#30340;&#31614;&#35777;&#31867;&#22411;?',
+    months_q: '&#22312;&#38889;&#24037;&#20316;&#22810;&#20845;&#20102;?',
+    salary_q: '&#24180;&#25910;&#20837;?',
+    months: ['< 1&#20491;&#26376;','1-3&#20491;&#26376;','3-12&#20491;&#26376;','1-3&#24180;','3&#24180;&#20197;&#19978;'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: '&#30005;&#35441;&#21495;&#30721; &#128222;',
+    phone_sub: '&#25105;&#20204;&#30340;&#39057;&#38989;&#39068;&#38382;&#23558;&#22312;24&#23567;&#26102;&#20869;&#19982;&#24744;&#32852;&#31995;!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: '&#25552;&#20132;', phone_skip: '&#36339;&#36807;',
+    phone_privacy: '&#28857;&#20987;&#25552;&#20132;&#21363;&#34920;&#31034;&#24744;&#21516;&#24847;&#20351;&#29992;&#24744;&#30340;&#20449;&#24687;&#65292;&#35813;&#20449;&#24687;&#20165;&#29992;&#20110;&#36151;&#27454;&#21592;&#35810;&#30446;&#30340;&#12290;',
+    result_head: '&#24050;&#25910;&#21040;&#24744;&#30340;&#30003;&#35831;! &#127881;',
+    result_desc: '&#24863;&#35874;&#24744;&#65281;&#25105;&#20204;&#30340;&#36151;&#27454;&#39069;&#38382;&#23558;&#22312;24&#23567;&#26102;&#20869;&#19982;&#24744;&#32852;&#31995;&#12290;',
+    conf_label: '&#128222; &#25105;&#20204;&#23558;&#32852;&#31995;&#24744;:', apply_btn: '&#31435;&#21363;&#30003;&#35831; &#8212; JB Bank', msg_btn: 'Messenger&#21592;&#35810;'
+  },
+  vi: {
+    name: 'Pyeongtaek Lounge', nat: 'Vietnam',
+    visa_q: 'Loai visa cua ban?', months_q: 'Ban lam viec bao lau?', salary_q: 'Thu nhap hang nam?',
+    months: ['< 1 thang','1-3 thang','3-12 thang','1-3 nam','3+ nam'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: 'So dien thoai &#128222;',
+    phone_sub: 'Chuyen vien se lien he trong vong 24 gio!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: 'Gui', phone_skip: 'Bo qua',
+    phone_privacy: 'Bang cach nhan Gui, ban dong y cho phep su dung thong tin chi danh cho tu van vay von.',
+    result_head: 'Da nhan! &#127881;',
+    result_desc: 'Cam on ban! Chuyen vien se lien he trong vong 24 gio.',
+    conf_label: '&#128222; Chung toi se goi:', apply_btn: 'Dang ky ngay &#8212; JB Bank', msg_btn: 'Chat qua Messenger'
+  },
+  th: {
+    name: 'Pyeongtaek Lounge', nat: 'Thailand',
+    visa_q: '&#3611;&#3619;&#3632;&#3648;&#3616;&#3607;&#3623;&#3637;&#3595;&#3656;&#3634;?',
+    months_q: '&#3607;&#3635;&#3591;&#3634;&#3609;&#3617;&#3634;&#3609;&#3634;&#3609;&#3649;&#3588;&#3656;&#3652;&#3627;&#3609;?',
+    salary_q: '&#3619;&#3634;&#3618;&#3652;&#3604;&#3657;&#3605;&#3656;&#3629;&#3611;&#3637;?',
+    months: ['< 1 &#3648;&#3604;&#3639;&#3629;&#3609;','1-3 &#3648;&#3604;&#3639;&#3629;&#3609;','3-12 &#3648;&#3604;&#3639;&#3629;&#3609;','1-3 &#3611;&#3637;','3+ &#3611;&#3637;'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: '&#3627;&#3617;&#3634;&#3618;&#3648;&#3621;&#3586;&#3650;&#3607;&#3619;&#3624;&#3633;&#3614;&#3607;&#3660; &#128222;',
+    phone_sub: '&#3648;&#3592;&#3657;&#3634;&#3627;&#3609;&#3657;&#3634;&#3607;&#3637;&#3592;&#3632;&#3605;&#3636;&#3604;&#3605;&#3656;&#3629;&#3616;&#3634;&#3618;&#3651;&#3609; 24 &#3594;&#3633;&#3656;&#3623;&#3650;&#3617;&#3591;!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: '&#3626;&#3656;&#3591;', phone_skip: '&#3586;&#3657;&#3634;&#3617;&#3651;&#3611;',
+    phone_privacy: '&#3585;&#3634;&#3619;&#3585;&#3604; &#3626;&#3656;&#3591; &#3627;&#3617;&#3634;&#3618;&#3588;&#3623;&#3634;&#3617;&#3623;&#3656;&#3634;&#3588;&#3640;&#3603;&#3618;&#3636;&#3609;&#3618;&#3629;&#3617;&#3651;&#3627;&#3657;&#3651;&#3594;&#3657;&#3586;&#3657;&#3629;&#3617;&#3641;&#3621;&#3648;&#3614;&#3639;&#3656;&#3629;&#3588;&#3635;&#3611;&#3619;&#3638;&#3585;&#3625;&#3634;&#3648;&#3607;&#3656;&#3634;&#3609;&#3633;&#3657;&#3609;',
+    result_head: '&#3652;&#3604;&#3657;&#3619;&#3633;&#3610;&#3649;&#3621;&#3657;&#3623;! &#127881;',
+    result_desc: '&#3586;&#3629;&#3610;&#3588;&#3640;&#3603;! &#3648;&#3592;&#3657;&#3634;&#3627;&#3609;&#3657;&#3634;&#3607;&#3637;&#3592;&#3632;&#3605;&#3636;&#3604;&#3605;&#3656;&#3629;&#3616;&#3634;&#3618;&#3651;&#3609; 24 &#3594;&#3633;&#3656;&#3623;&#3650;&#3617;&#3591;',
+    conf_label: '&#128222; &#3648;&#3619;&#3634;&#3592;&#3632;&#3650;&#3607;&#3619;:', apply_btn: '&#3626;&#3617;&#3633;&#3588;&#3619;&#3648;&#3621;&#3618; &#8212; JB Bank', msg_btn: '&#3605;&#3636;&#3604;&#3605;&#3656;&#3629;&#3612;&#3656;&#3634;&#3609; Messenger'
+  },
+  mn: {
+    name: 'Pyeongtaek Lounge', nat: 'Mongolia',
+    visa_q: '&#1042;&#1080;&#1079;&#1085;&#1080;&#1081; &#1090;&#1257;&#1088;&#1086;&#1083;?',
+    months_q: '&#1061;&#1101;&#1076;&#1101;&#1085; &#1089;&#1072;&#1088; &#1072;&#1078;&#1080;&#1083;&#1083;&#1072;&#1089;&#1072;&#1085; &#1073;&#1101;?',
+    salary_q: '&#1046;&#1080;&#1083;&#1080;&#1081;&#1085; &#1086;&#1088;&#1083;&#1086;&#1075;&#1086;?',
+    months: ['< 1 sar','1-3 sar','3-12 sar','1-3 jil','3+ jil'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: '&#1059;&#1090;&#1072;&#1089;&#1085;&#1099; &#1076;&#1091;&#1075;&#1072;&#1072;&#1088; &#128222;',
+    phone_sub: '&#1052;&#1072;&#1085;&#1072;&#1081; &#1084;&#1101;&#1088;&#1075;&#1077;&#1078;&#1080;&#1083;&#1090;&#1101;&#1085; 24 &#1094;&#1072;&#1075;&#1080;&#1081;&#1085; &#1076;&#1086;&#1090;&#1086;&#1088; &#1093;&#1086;&#1083;&#1073;&#1086;&#1075;&#1076;&#1086;&#1085;&#1086;!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: '&#1048;&#1083;&#1075;&#1101;&#1101;&#1093;', phone_skip: '&#1040;&#1083;&#1075;&#1072;&#1089;&#1072;&#1093;',
+    phone_privacy: '&#1048;&#1083;&#1075;&#1101;&#1101;&#1093; &#1076;&#1072;&#1088;&#1089;&#1085;&#1072;&#1072;&#1088; &#1090;&#1072; &#1086;&#1077;&#1088;&#1080;&#1081;&#1085; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1080;&#1081;&#1075; &#1079;&#1077;&#1077;&#1083;&#1080;&#1081;&#1085; &#1079;&#1257;&#1074;&#1083;&#1257;&#1075;&#1257;&#1085;&#1076; &#1072;&#1096;&#1080;&#1075;&#1083;&#1072;&#1093;&#1099;&#1075; &#1079;&#1257;&#1074;&#1096;&#1257;&#1088;&#1095; &#1073;&#1072;&#1081;&#1085;&#1072;.',
+    result_head: '&#1061;&#1199;&#1083;&#1101;&#1101;&#1085; &#1072;&#1074;&#1083;&#1072;&#1072;! &#127881;',
+    result_desc: '&#1041;&#1072;&#1103;&#1088;&#1083;&#1072;&#1083;&#1072;&#1072;! 24 &#1094;&#1072;&#1075;&#1080;&#1081;&#1085; &#1076;&#1086;&#1090;&#1086;&#1088; &#1093;&#1086;&#1083;&#1073;&#1086;&#1075;&#1076;&#1086;&#1085;&#1086;.',
+    conf_label: '&#128222; &#1041;&#1080;&#1076; &#1079;&#1072;&#1083;&#1075;&#1072;&#1085;&#1072;:', apply_btn: '&#1054;&#1076;&#1086;&#1086; &#1257;&#1088;&#1075;&#1257;&#1076;&#1083;&#1077;&#1083; &#8212; JB Bank', msg_btn: 'Messenger-eer holbogdoh'
+  },
+  en: {
+    name: 'Pyeongtaek Lounge', nat: '',
+    visa_q: "What's your visa type?", months_q: 'How long have you worked in Korea?', salary_q: "What's your annual salary?",
+    months: ['< 1 month','1-3 months','3-12 months','1-3 years','3+ years'],
+    salary: ['< W15,000,000','W15M - W25M','W25M - W40M','> W40,000,000'],
+    phone_title: 'Phone Number &#128222;',
+    phone_sub: 'Our loan officer at JB Bank Pyeongtaek Lounge will contact you within 24 hours!',
+    phone_placeholder: '010-XXXX-XXXX', phone_btn: 'Submit', phone_skip: 'Skip for now',
+    phone_privacy: 'By clicking Submit, you agree to the use of your information, which will be used only for loan consultation purposes.',
+    result_head: 'We received your inquiry! &#127881;',
+    result_desc: 'Thank you! Our loan officer at JB Bank Pyeongtaek Lounge will contact you within 24 hours.',
+    conf_label: '&#128222; We\'ll call you at:', apply_btn: 'Apply Now &#8212; JB Bank Official', msg_btn: 'Chat with a loan officer on Messenger'
+  }
+};
+
+function getVisaChoices(nat) {
+  var all = [
+    {icon:'&#128119;', label:'E-9', sub:'Manufacturing / Factory', val:'E-9'},
+    {icon:'&#128188;', label:'E-7', sub:'Skilled worker', val:'E-7'},
+    {icon:'&#127968;', label:'F-2', sub:'Resident visa', val:'F-2'},
+    {icon:'&#127758;', label:'F-4', sub:'Overseas Korean', val:'F-4'},
+    {icon:'&#127969;', label:'F-5', sub:'Permanent resident', val:'F-5'},
+    {icon:'&#128145;', label:'F-6', sub:'Spouse of Korean', val:'F-6'},
+    {icon:'&#127891;', label:'D-2', sub:'Student', val:'D-2'},
+  ];
+  if (['China','Uzbekistan','Kazakhstan'].indexOf(nat) === -1) {
+    all = all.filter(function(v){ return v.val !== 'F-4'; });
+  }
+  if (nat === 'China') {
+    all = all.filter(function(v){ return v.val !== 'E-9'; });
+  }
+  return all;
+}
+
+var lang = 'en', step = 0, answers = {}, phone = '';
+
+function startChat(code) {
+  lang = code; step = 0; answers = {}; phone = '';
+  var t = LANG[code];
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('chatbox').style.display = 'flex';
+  document.getElementById('cname').innerHTML = t.name;
+  document.getElementById('cflag').innerHTML = getFlag(code);
+  document.getElementById('msgs').innerHTML = '';
+  document.getElementById('charea').innerHTML = '';
+  document.getElementById('cta-area').innerHTML = '';
+  document.getElementById('cta-area').style.display = 'none';
+  document.getElementById('phone-area').style.display = 'none';
+  setP(10);
+  setTimeout(function(){ showStep(0); }, 200);
+}
+
+function getFlag(code) {
+  var flags = {ph:'&#127477;&#127469;',ne:'&#127475;&#127477;',si:'&#127473;&#127472;',id:'&#127470;&#127465;',my:'&#127474;&#127474;',kh:'&#127472;&#127469;',bd:'&#127463;&#127465;',uz:'&#127482;&#127487;',kg:'&#127472;&#127468;',zh:'&#127464;&#127475;',vi:'&#127483;&#127475;',th:'&#127481;&#127469;',mn:'&#127474;&#127475;',en:'&#127760;'};
+  return flags[code] || '&#127760;';
+}
+
+function showStep(idx) {
+  var t = LANG[lang];
+  if (idx === 0) {
+    setP(25); addBot(t.visa_q);
+    renderChoices(getVisaChoices(t.nat), function(c) {
+      answers.visa = c.val; addUser(c.label);
+      setTimeout(function(){ showStep(1); }, 350);
+    });
+  } else if (idx === 1) {
+    setP(50); addBot(t.months_q);
+    var mChoices = t.months.map(function(m, i) {
+      return {icon: ['&#128305;','&#128197;','&#128198;','&#128199;','&#11088;'][i], label: m, val: ['<1','1-3','3-12','1-3y','>3y'][i]};
+    });
+    renderChoices(mChoices, function(c) {
+      answers.months = c.val; addUser(c.label);
+      setTimeout(function(){ showStep(2); }, 350);
+    });
+  } else if (idx === 2) {
+    setP(75); addBot(t.salary_q);
+    var sChoices = t.salary.map(function(s, i) {
+      return {icon: ['&#128184;','&#128176;','&#128142;','&#127942;'][i], label: s, val: ['<15m','15-25m','25-40m','>40m'][i]};
+    });
+    renderChoices(sChoices, function(c) {
+      answers.salary = c.val; addUser(c.label);
+      setTimeout(function(){ showPhoneStep(); }, 350);
+    });
+  }
+}
+
+function renderChoices(choices, onSelect) {
+  var area = document.getElementById('charea');
+  area.innerHTML = '';
+  choices.forEach(function(c) {
+    var btn = document.createElement('button');
+    btn.className = 'chbtn';
+    btn.innerHTML = '<span class="ci">' + c.icon + '</span><span><span>' + c.label + '</span>' + (c.sub ? '<span class="csub">' + c.sub + '</span>' : '') + '</span>';
+    btn.onclick = function() { area.innerHTML = ''; onSelect(c); };
+    area.appendChild(btn);
+  });
+}
+
+function showPhoneStep() {
+  setP(88);
+  var t = LANG[lang];
+  var area = document.getElementById('phone-area');
+  area.style.display = 'block';
+  area.innerHTML =
+    '<div class="phone-label">' + t.phone_title + '</div>' +
+    '<div class="phone-sub">' + t.phone_sub + '</div>' +
+    '<div class="phone-row"><input type="tel" id="phone-input" placeholder="' + t.phone_placeholder + '" inputmode="tel">' +
+    '<button class="phone-btn" onclick="submitPhone(false)">' + t.phone_btn + '</button></div>' +
+    '<span class="phone-skip" onclick="submitPhone(true)">' + t.phone_skip + '</span>' +
+    '<div class="phone-privacy">' + t.phone_privacy + '</div>';
+  document.getElementById('msgs').scrollTop = 99999;
+}
+
+function submitPhone(skip) {
+  var input = document.getElementById('phone-input');
+  phone = skip ? '' : (input ? input.value.trim() : '');
+  document.getElementById('phone-area').style.display = 'none';
+  if (phone) addUser('&#128222; ' + phone);
+  showResult();
+  saveToSheet();
+}
+
+function showResult() {
+  setP(100);
+  var t = LANG[lang];
+  var confBadge = phone ? '<div class="conf-badge">' + t.conf_label + ' <strong>' + phone + '</strong></div>' : '';
+  var summary = '<div class="summary-box">' +
+    '<div class="summary-row"><span>Nationality</span><span>' + getFlag(lang) + ' ' + (t.nat || lang) + '</span></div>' +
+    '<div class="summary-row"><span>Visa</span><span>' + (answers.visa || '-') + '</span></div>' +
+    '<div class="summary-row"><span>Employment</span><span>' + (answers.months || '-') + '</span></div>' +
+    '<div class="summary-row"><span>Salary</span><span>' + (answers.salary || '-') + '</span></div>' +
+    '</div>';
+  var area = document.getElementById('cta-area');
+  area.style.display = 'block';
+  area.innerHTML =
+    '<div class="ctabox">' +
+    '<div class="ctah"><span class="ctah-icon">&#127881;</span><span class="ctah-text">' + t.result_head + '</span></div>' +
+    confBadge + summary +
+    '<div class="ctad">' + t.result_desc + '</div>' +
+    '<a class="btn-apply" href="' + APPLY_URL + '" target="_blank">&#127968; ' + t.apply_btn + '</a>' +
+    '<a class="btn-msg" href="' + FB_URL + '" target="_blank">&#128172; ' + t.msg_btn + '</a>' +
+    '</div>';
+  document.getElementById('msgs').scrollTop = 99999;
+}
+
+function saveToSheet() {
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL') return;
+  var t = LANG[lang];
+  setTimeout(function() {
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        phone: phone || '(skipped)',
+        nationality: t.nat || lang,
+        visa: answers.visa || '',
+        months: answers.months || '',
+        salary: answers.salary || '',
+        result: 'pending',
+        product: '',
+        amount: '',
+        source: document.referrer || 'direct'
+      })
+    }).catch(function(e){ console.log('save:', e); });
+  }, 100);
+}
+
+function addBot(t) {
+  var wrap = document.createElement('div'); wrap.className = 'mrow';
+  var av = document.createElement('div'); av.className = 'bav'; av.innerHTML = '&#127968;';
+  var b = document.createElement('div'); b.className = 'bub bot'; b.innerHTML = t;
+  wrap.appendChild(av); wrap.appendChild(b);
+  var msgs = document.getElementById('msgs'); msgs.appendChild(wrap); msgs.scrollTop = 99999;
+}
+
+function addUser(t) {
+  var wrap = document.createElement('div'); wrap.className = 'mrow u';
+  var b = document.createElement('div'); b.className = 'bub u'; b.innerHTML = t;
+  wrap.appendChild(b);
+  var msgs = document.getElementById('msgs'); msgs.appendChild(wrap); msgs.scrollTop = 99999;
+}
+
+function setP(pct) { document.getElementById('pfill').style.width = pct + '%'; }
+
+function resetApp() {
+  lang = 'en'; step = 0; answers = {}; phone = '';
+  document.getElementById('chatbox').style.display = 'none';
+  document.getElementById('landing').style.display = 'block';
+  document.getElementById('msgs').innerHTML = '';
+  document.getElementById('charea').innerHTML = '';
+  document.getElementById('cta-area').innerHTML = '';
+  document.getElementById('cta-area').style.display = 'none';
+  document.getElementById('phone-area').style.display = 'none';
+  document.getElementById('pfill').style.width = '0%';
+}
+</script>
+</body>
+</html>
